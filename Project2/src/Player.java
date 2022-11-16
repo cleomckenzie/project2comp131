@@ -1,8 +1,6 @@
 import java.awt.*;
 
 public class Player extends GraphicsObject {
-    private double x;
-    private double y;
     double speed_x = 0;
     Color color;
 
@@ -11,8 +9,7 @@ public class Player extends GraphicsObject {
      and Y to integers, sets the color
      ********************************/
     public Player(double x, double y, Color color){
-        this.x = x;
-        this.y = y;
+        super(x, y);
         this.color = color;
     }
 
