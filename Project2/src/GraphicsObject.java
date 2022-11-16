@@ -8,9 +8,7 @@ public class GraphicsObject {
     double speed_x;
     double speed_y;
 
-    public GraphicsObject(double x, double y) {
-        this.x = x;
-        this.y = y;
+    public GraphicsObject() {
         this.speed_x = 0;
         this.speed_y = 0;
     }

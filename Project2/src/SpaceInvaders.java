@@ -32,6 +32,7 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
     private int frame = 0;
 
     // FIXME list your game objects here
+    Player player1;
 
     /* Constructor for a Space Invaders game
      */
@@ -46,6 +47,7 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
         this.timer = new Timer(msPerFrame, this);
 
         // FIXME initialize your game objects
+        this.player1 = new Player(300, 350, Color.PINK);
     }
 
     /* Start the game
@@ -143,18 +145,22 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
      */
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            // FIXME what happens when left arrow is pressed
+            if(!(player1.getX() - 10 <= 0)) {
+                player1.setSpeed_x(-5);
+            }
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            // FIXME what happens when right arrow is pressed
+            if(!(player1.getX() + 10 >= canvasWidth)) {
+                player1.setSpeed_x(5);
+            }
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            // FIXME what happens when space bar is pressed
+            player1.setColor(Color.RED);
         }
     }
 
     /* Update the game objects
      */
     private void update() {
-        // FIXME update game objects here
+        player1.update(canvasWidth, canvasHeight, this.frame);
     }
 
     /* Check if the player has lost the game
@@ -178,6 +184,7 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
      * @param g The Graphics for the JPanel
      */
     private void paintGameScreen(Graphics g) {
+        player1.draw(g);
         // FIXME draw game objects here
     }
 
