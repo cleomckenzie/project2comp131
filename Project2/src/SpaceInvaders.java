@@ -31,8 +31,30 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
     private Timer timer;
     private int frame = 0;
 
-    // FIXME list your game objects here
+    /**** GAME VARIABLES ****/
+    private double alienSpeed = 2.5;
+    private boolean bulletDraw = false;
+    private double alienWidth = 40;
+    private double playerWidth = 20;
+    private double bulletWidth = 4;
+    private double bulletHeight = 8;
+    private int playerSpeed = 5;
+    private double bulletSpeed = 1;
+    /************************/
+
+    /***** GAME OBJECTS *****/
     Player player1;
+    Alien alien1;
+    Alien alien2;
+    Alien alien3;
+    Alien alien4;
+    Alien alien5;
+    Alien alien6;
+    Alien alien7;
+    Alien alien8;
+    PlayerBullet bullet;
+    /************************/
+
 
     /* Constructor for a Space Invaders game
      */
@@ -47,7 +69,16 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
         this.timer = new Timer(msPerFrame, this);
 
         // FIXME initialize your game objects
-        this.player1 = new Player(300, 350, Color.PINK);
+        this.player1 = new Player(300, 350, playerWidth, Color.PINK);
+        this.alien1 = new Alien(50, 50, alienSpeed, alienWidth, Color.lightGray);
+        this.bullet = new PlayerBullet(player1, bulletWidth, bulletHeight, bulletSpeed, Color.red);
+
+        /*this.alien2 = new Alien(100, 50, alienSpeedX,40, Color.lightGray);
+        this.alien3 = new Alien(150, 50, alienSpeedX,40, Color.lightGray);
+        this.alien4 = new Alien(200, 50, alienSpeedX,40, Color.lightGray);
+        this.alien5 = new Alien(250, 50, alienSpeedX,40, Color.lightGray);
+        this.alien6 = new Alien(250, 50, alienSpeedX,40, Color.lightGray);
+        this.alien7 = new Alien(50, 10, alienSpeedX,40, Color.lightGray);*/
     }
 
     /* Start the game
@@ -146,14 +177,15 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             if(!(player1.getX() - 10 <= 0)) {
-                player1.setSpeed_x(-5);
+                player1.setSpeed_x(-playerSpeed);
             }
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             if(!(player1.getX() + 10 >= canvasWidth)) {
-                player1.setSpeed_x(5);
+                player1.setSpeed_x(playerSpeed);
             }
         } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
             player1.setColor(Color.RED);
+            bulletDraw = true;
         }
     }
 
@@ -161,6 +193,15 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
      */
     private void update() {
         player1.update(canvasWidth, canvasHeight, this.frame);
+        bullet.update(canvasWidth, canvasHeight, this.frame);
+        alien1.update(canvasWidth, canvasHeight, this.frame);
+
+        /*alien2.update(canvasWidth, canvasHeight, this.frame);
+        alien3.update(canvasWidth, canvasHeight, this.frame);
+        alien4.update(canvasWidth, canvasHeight, this.frame);
+        alien5.update(canvasWidth, canvasHeight, this.frame);
+        alien6.update(canvasWidth, canvasHeight, this.frame);
+        alien7.update(canvasWidth, canvasHeight, this.frame);*/
     }
 
     /* Check if the player has lost the game
@@ -185,6 +226,16 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
      */
     private void paintGameScreen(Graphics g) {
         player1.draw(g);
+        alien1.draw(g);
+        /*alien2.draw(g);
+        alien3.draw(g);
+        alien4.draw(g);
+        alien5.draw(g);
+        alien6.draw(g);
+        alien7.draw(g);*/
+        if(bulletDraw == true) {
+            bullet.draw(g);
+        }
         // FIXME draw game objects here
     }
 

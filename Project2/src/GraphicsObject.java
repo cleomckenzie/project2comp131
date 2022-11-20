@@ -15,6 +15,10 @@ public class GraphicsObject {
         this.speed_y = 0;
     }
 
+    public GraphicsObject() {
+
+
+    }
     /* Draw the object
      *
      * This function should never be called directly, but should be overridden
@@ -34,5 +38,14 @@ public class GraphicsObject {
     public void update(int pic_width, int pic_height, int frame) {
         this.x += this.speed_x;
         this.y += this.speed_y;
+    }
+
+    /*********************************
+     [CAST] Used to quickly convert
+     doubles into integers.
+     ********************************/
+    public int cast(double i) {
+        int inti = (int) i;
+        return inti;
     }
 }
